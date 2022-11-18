@@ -30,6 +30,8 @@ public class UserLogin {
         if (identifyCode.equalsIgnoreCase(sessionCode)){
             System.out.println("验证码正确");
             //进行登录判断的逻辑大家自己写，这里就不演示了
+            // return "success";
+            // helloWorldHome();
         }else{
             System.out.println("验证码错误");
             //重定向到登录画面
@@ -48,12 +50,19 @@ public class UserLogin {
         IdentifyCodeUtils utils = new IdentifyCodeUtils();
         String identifyCode = utils.getIdentifyCode();
         //session存入验证码
-        session.setAttribute("identifyCode", identifyCode);
+        session.setAttribute("identifyFyCode", identifyCode);
         //根据验证码创建图片
         BufferedImage identifyImage = utils.getIdentifyImage(identifyCode);
         //回传给前端
         utils.responseIdentifyImg(identifyImage,response);
 
+    }
+
+
+    @ResponseBody
+    public String helloWorldHome(){
+        // return "index";
+        return "hello world, vscode";
     }
 }
 
