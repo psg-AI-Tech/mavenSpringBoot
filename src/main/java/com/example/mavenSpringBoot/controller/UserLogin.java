@@ -1,16 +1,34 @@
 package com.example.mavenSpringBoot.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.*;
 import java.awt.image.BufferedImage;
 
 
 import com.example.mavenSpringBoot.utils.IdentifyCodeUtils;
+import com.example.mavenSpringBoot.entity.User;
+import com.example.mavenSpringBoot.api.CommonResult;
+// import com.example.mavenSpringBoot.api.*;
+
+// @RestController
+// public class LoginController {
+ 
+//     @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
+//     public CommonResult login(@RequestBody User user) {
+//         if (user.getUsername().equals("admin") && user.getPassword().equals("123456"))
+//             return CommonResult.success("admin");
+//         else
+//             return CommonResult.validateFailed();
+//     }
+// }
 
 
 @Controller
@@ -38,6 +56,17 @@ public class UserLogin {
             return "redirect:/loginShow";
         }
          return "";
+    }
+
+    @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
+    public CommonResult login_vue(@RequestBody User user) {
+        if (user.getUsername().equals("admin") && user.getPassword().equals("123456")){
+
+            System.out.println("get request");
+            return CommonResult.success("admin");
+        }
+        else
+            return CommonResult.validateFailed();
     }
 
     /**
