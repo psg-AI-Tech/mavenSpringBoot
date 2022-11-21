@@ -31,7 +31,7 @@ import com.example.mavenSpringBoot.api.CommonResult;
 // }
 
 
-@Controller
+@RestController
 public class UserLogin {
     @RequestMapping("/loginShow")
     public String loginShow(){
@@ -64,9 +64,14 @@ public class UserLogin {
 
             System.out.println("get request");
             return CommonResult.success("admin");
+            // return CommonResult.failed("admin");
         }
-        else
-            return CommonResult.validateFailed();
+        else{
+            
+            // return CommonResult.failed(user.getPassword());
+            return CommonResult.failed("用户名或密码错误");
+            // return CommonResult.validateFailed();
+        }
     }
 
     /**
